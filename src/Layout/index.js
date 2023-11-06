@@ -21,7 +21,7 @@ function Layout() {
     <React.Fragment>
       <Header />
       <div className="container">
-        <Home />
+        <Home decks={decks} />
         <NotFound />
       </div>
     </React.Fragment>

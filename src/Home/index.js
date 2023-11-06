@@ -1,10 +1,10 @@
 import React from "react";
 import DecksList from "./DecksList";
 
-function Home() {
+function Home({decks}) {
     return <div>
         <button type="button" className="btn btn-secondary"> Create Deck</button>
-        <DecksList />
+        <DecksList decks={decks} />
     </div>
 }
 

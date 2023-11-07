@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../Home";
-import { useState } from "react";
-import { useEffect } from "react";
-import { listDecks } from "../utils/api";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import Study from "../Study";
+import Deck from "../Deck";
 
 function Layout() {
-  const [decks, setDecks] = useState([]);
-
-  useEffect(() => {
-    async function fetchAllDecks() {
-      const data = await listDecks();
-      setDecks(data);
-    }
-    fetchAllDecks();
-  }, []);
+  const { path, url } = useRouteMatch();
+  // console.log(url, path);
 
   return (
     <React.Fragment>
       <Header />
       <div className="container">
-        <Home decks={decks} />
-        <NotFound />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/decks/:deckId/study">
+            <Study />
+          </Route>
+          <Route path="/decks/:deckId">
+            <Deck />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </React.Fragment>
   );

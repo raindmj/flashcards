@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../Home";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Study from "../Study";
 import Deck from "../Deck";
 
 function Layout() {
-  const { path, url } = useRouteMatch();
-  // console.log(url, path);
-
   return (
     <React.Fragment>
       <Header />

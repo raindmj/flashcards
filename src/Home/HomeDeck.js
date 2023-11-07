@@ -1,17 +1,19 @@
 import React from "react";
-import Study from "../Study";
 import {
-  Route,
-  Switch,
-  Link,
-  useRouteMatch,
-  useHistory,
+  Link
 } from "react-router-dom";
-import { deleteDeck, listDecks } from "../utils/api";
-import { useState } from "react";
-import { useEffect } from "react";
+import { deleteDeck } from "../utils/api";
 
-function HomeDeck({ deck, deleteHandler }) {
+function HomeDeck({ deck, getDecks }) {
+  const deleteHandler = async (deck) => {
+    if (
+      window.confirm("Delete this deck? You will not be able to recover it.")
+    ) {
+      await deleteDeck(deck.id);
+      getDecks();
+    }
+  };
+
   return (
     <div className="border rounded p-3 my-2">
       <div className="d-flex justify-content-between">

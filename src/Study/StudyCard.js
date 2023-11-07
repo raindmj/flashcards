@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
-function StudyCard() {
+function StudyCard({ currentDeck }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  function handleFlip() {
+    setIsFlipped(!isFlipped);
+  }
+
+  const cards = currentDeck.cards;
+  console.log(cards)
+
   return (
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">Testing</h5>
-        <p className="card-text">Text</p>
-        <Link to="#">Flip</Link>
+    <div>
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">Card </h5>
+          <p className="card-text">Text</p>
+          <button type="button" className="btn btn-secondary" onClick={handleFlip}>Flip</button>
+        </div>
       </div>
     </div>
   );

@@ -14,10 +14,19 @@ function DecksList() {
     getDecks();
   }, []);
 
+  const handleDelete = async (deck) => {
+    if (
+      window.confirm("Delete this deck? You will not be able to recover it.")
+    ) {
+      await deleteDeck(deck.id);
+      getDecks();
+    }
+  };
+
   return (
-    <div>
+    <div className="mb-4">
       {decks.map((deck) => (
-        <HomeDeck deck={deck} key={deck.id} getDecks={getDecks} />
+        <HomeDeck deck={deck} key={deck.id} handleDelete={handleDelete} />
       ))}
     </div>
   );

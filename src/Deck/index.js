@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { readDeck } from "../utils/api";
 import DeckNav from "./DeckNav";
+import Cards from "../Cards";
 
 function Deck() {
   const [currentDeck, setCurrentDeck] = useState({});
@@ -15,10 +16,10 @@ function Deck() {
   // console.log(currentDeck);
 
   const params = useParams();
-  //   console.log(params);
+  console.log(params);
   const deckId = params.deckId;
 
-  const { url, path } = useRouteMatch;
+  const { url, path } = useRouteMatch();
   // console.log(url, path)
 
   useEffect(() => {
@@ -33,7 +34,25 @@ function Deck() {
     return (
       <div>
         <DeckNav currentDeck={currentDeck} />
-        <p>Deck here</p>
+
+        <div className="pb-4">
+          <h4>{currentDeck.name}</h4>
+          <p>{currentDeck.description}</p>
+          <Link to={`${url}/edit`} className="btn btn-secondary mr-2">
+            <span className="oi oi-pencil" /> Edit
+          </Link>
+          <Link to={`${url}/study`} className="btn btn-primary mr-2">
+            <span className="oi oi-book" /> Study
+          </Link>
+          <Link to={`${url}/cards/new`} className="btn btn-primary">
+            <span className="oi oi-plus" /> Add Cards
+          </Link>
+          <button type="button" className="btn btn-danger float-right">
+            <span className="oi oi-trash" /> Delete
+          </button>
+        </div>
+
+        <Cards currentDeck={currentDeck} />
       </div>
     );
   } else {

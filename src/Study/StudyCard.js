@@ -6,6 +6,8 @@ function StudyCard({ currentDeck }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
 
+  // console.log(index);
+
   const cards = currentDeck.cards;
   // console.log(cards);
 
@@ -22,11 +24,11 @@ function StudyCard({ currentDeck }) {
   }
 
   function handleNext() {
-    if (index + 1 < cards.length) {
+    if (index < cards.length) {
       setIndex(index + 1);
     }
-    if (isFlipped === false) {
-      setIsFlipped(true);
+    if (isFlipped === true) {
+      setIsFlipped(false);
     }
   }
 
@@ -43,10 +45,10 @@ function StudyCard({ currentDeck }) {
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">
-            Card {index + 1} of {cards.length}{" "}
+            Card {index + 1} of {cards.length}
           </h5>
           <p className="card-text">
-            {isFlipped ? cards[index].front : cards[index].back}
+            {isFlipped ? cards[index].back : cards[index].front}
           </p>
           {index > 0 && (
             <button
@@ -62,9 +64,9 @@ function StudyCard({ currentDeck }) {
             className="btn btn-secondary mr-2"
             onClick={handleFlip}
           >
-            {isFlipped ? "Flip to Back" : "Flip to Front"}
+            {isFlipped ? "Flip to Front" : "Flip to Back"}
           </button>
-          {index + 1 < cards.length && (
+          {(index + 1 < cards.length && isFlipped === true) && (
             <button
               type="button"
               className="btn btn-primary"

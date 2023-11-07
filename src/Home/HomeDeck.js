@@ -2,16 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { deleteDeck } from "../utils/api";
 
-function HomeDeck({ deck, getDecks }) {
+function HomeDeck({ deck, handleDelete }) {
   // console.log(deck);
-  const handleDelete = async (deck) => {
-    if (
-      window.confirm("Delete this deck? You will not be able to recover it.")
-    ) {
-      await deleteDeck(deck.id);
-      getDecks();
-    }
-  };
 
   if (deck.id) {
     return (
@@ -23,17 +15,17 @@ function HomeDeck({ deck, getDecks }) {
         <p>{deck.description}</p>
         <div>
           <Link to={`/decks/${deck.id}`} className="btn btn-secondary mr-2">
-            View
+          <span className="oi oi-eye" /> View
           </Link>
           <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
-            Study
+          <span className="oi oi-book" /> Study
           </Link>
           <button
             onClick={() => handleDelete(deck)}
             type="button"
             className="btn btn-danger float-right"
           >
-            Delete
+            <span className="oi oi-trash" /> Delete
           </button>
         </div>
       </div>

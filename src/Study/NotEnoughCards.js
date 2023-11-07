@@ -20,7 +20,7 @@ function NotEnoughCards({ currentDeck, deckId }) {
         cards in this deck.
       </p>
       <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary">
-        Add Cards
+      <span className="oi oi-plus" /> Add Cards
       </Link>
     </div>
   );

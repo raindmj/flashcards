@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       <Link to="/decks/new" className="btn btn-secondary">
-        Create Deck
+      <span className="oi oi-plus" /> Create Deck
       </Link>
       <DecksList />
     </div>

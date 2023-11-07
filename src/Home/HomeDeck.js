@@ -11,31 +11,7 @@ import { deleteDeck, listDecks } from "../utils/api";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function HomeDeck({ deck }) {
-  const [newDecks, setNewDecks] = useState([]);
-
-  // console.log(newDecks)
-
-  async function getDecks() {
-    const data = await listDecks();
-    setNewDecks(data);
-  }
-
-  useEffect(() => {
-    getDecks();
-  }, []);
-
-  const history = useHistory();
-
-  const deleteHandler = async () => {
-    if (
-      window.confirm("Delete this deck? You will not be able to recover it.")
-    ) {
-      await deleteDeck(deck.id);
-      getDecks();
-      history.push("/");
-    }
-  }
+function HomeDeck({ deck, deleteHandler }) {
 
   return (
     <div className="border rounded p-3 my-2">

@@ -7,6 +7,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { readDeck } from "../utils/api";
+import DeckNav from "./DeckNav";
 
 function Deck() {
   const [currentDeck, setCurrentDeck] = useState({});
@@ -31,16 +32,7 @@ function Deck() {
   if (currentDeck.id) {
     return (
       <div>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              {currentDeck.name}
-            </li>
-          </ol>
-        </nav>
+        <DeckNav currentDeck={currentDeck} />
         <p>Deck here</p>
       </div>
     );

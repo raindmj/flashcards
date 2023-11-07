@@ -11,6 +11,7 @@ import { useState } from "react";
 import { readDeck } from "../utils/api";
 import StudyCard from "./StudyCard";
 import NotEnoughCards from "./NotEnoughCards";
+import StudyNav from "./StudyNav";
 
 function Study() {
   const [currentDeck, setCurrentDeck] = useState({});
@@ -35,23 +36,11 @@ function Study() {
   if (currentDeck.id) {
     return (
       <div>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={`/decks/${deckId}`}>{currentDeck.name}</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Study
-            </li>
-          </ol>
-        </nav>
+        <StudyNav deckId={deckId} currentDeck={currentDeck} />
         <div>
           <h1>Study: {currentDeck.name}</h1>
         </div>
-        {currentDeck.cards.length < 3 ? <NotEnoughCards currentDeck={currentDeck} /> : <StudyCard currentDeck={currentDeck} /> }
+        {currentDeck.cards.length < 3 ? <NotEnoughCards currentDeck={currentDeck} deckId={deckId} /> : <StudyCard currentDeck={currentDeck} /> }
       </div>
     );
   } else {

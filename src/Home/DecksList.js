@@ -20,7 +20,7 @@ function DecksList() {
     getDecks();
   }, []);
 
-  const deleteHandler = async () => {
+  const deleteHandler = async (deck) => {
     if (
       window.confirm("Delete this deck? You will not be able to recover it.")
     ) {

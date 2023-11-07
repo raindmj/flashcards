@@ -12,7 +12,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function HomeDeck({ deck, deleteHandler }) {
-
   return (
     <div className="border rounded p-3 my-2">
       <div className="d-flex justify-content-between">
@@ -28,7 +27,7 @@ function HomeDeck({ deck, deleteHandler }) {
           Study
         </Link>
         <button
-          onClick={deleteHandler}
+          onClick={() => deleteHandler(deck)}
           type="button"
           className="btn btn-danger float-right"
         >

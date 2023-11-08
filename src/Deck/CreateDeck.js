@@ -12,7 +12,7 @@ function CreateDeck() {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  console.log(formData);
+  // console.log(formData);
 
   function handleChange(event) {
     event.preventDefault();

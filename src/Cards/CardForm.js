@@ -4,11 +4,12 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, handleSave, formDa
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="front">Front:</label>
+        <label htmlFor="front">Front</label>
         <textarea
           id="front"
           name="front"
           type="text"
+          rows={3}
           onChange={handleChange}
           placeholder="Front side of card"
           value={formData.front}
@@ -17,11 +18,12 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, handleSave, formDa
         />
       </div>
       <div className="form-group">
-        <label htmlFor="back">Back:</label>
+        <label htmlFor="back">Back</label>
         <textarea
           id="back"
           name="back"
           type="text"
+          rows={3}
           onChange={handleChange}
           placeholder="Back side of card"
           value={formData.back}

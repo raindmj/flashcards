@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { deleteDeck } from "../utils/api";
 
 function HomeDeck({ deck, handleDelete }) {
-  // console.log(deck);
+  console.log("deck:", deck);
 
-  if (deck.id) {
     return (
       <div className="border rounded p-3 my-2">
         <div className="d-flex justify-content-between">
@@ -30,9 +29,6 @@ function HomeDeck({ deck, handleDelete }) {
         </div>
       </div>
     );
-  } else {
-    return "Loading...";
-  }
 }
 
 export default HomeDeck;

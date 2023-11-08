@@ -22,6 +22,7 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, formData }) {
           id="description"
           name="description"
           type="text"
+          rows={3}
           onChange={handleChange}
           placeholder="Brief description of the deck"
           value={formData.description}

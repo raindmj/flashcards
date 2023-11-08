@@ -15,7 +15,7 @@ function EditCard() {
   const [formData, setFormData] = useState(initialFormData);
 
   const { deckId, cardId } = useParams();
-    console.log(deckId, cardId)
+    // console.log(deckId, cardId)
 
   useEffect(() => {
     async function getCard() {
@@ -50,7 +50,7 @@ function EditCard() {
   const submitLabel = "Submit";
   const cancelLabel = "Cancel";
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <div className="pb-4">

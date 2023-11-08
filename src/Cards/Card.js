@@ -1,9 +1,14 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useRouteMatch } from "react-router-dom";
 
 function Card({ card }) {
+  console.log(card)
+
   const params = useParams();
-  console.log(params);
+  // console.log(params);
+
+  const {url, path} = useRouteMatch();
+  // console.log(url, path)
 
   return (
     <div className="card mb-2">
@@ -13,7 +18,7 @@ function Card({ card }) {
           <p className="card-text col">{card.back}</p>
         </div>
         <div className="float-right">
-          <Link to="/" className="btn btn-secondary mr-2">
+          <Link to={`${url}/cards/${card.id}/edit`} className="btn btn-secondary mr-2">
             <span className="oi oi-pencil" /> Edit
           </Link>
           <button type="button" className="btn btn-danger">

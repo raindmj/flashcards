@@ -6,8 +6,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Study from "../Study";
 import Deck from "../Deck";
 import AddCard from "../Cards/AddCard";
-import CreateDeck from "../DeckForm/CreateDeck";
-import EditDeck from "../DeckForm/EditDeck";
+import CreateDeck from "../Deck/CreateDeck";
+import EditDeck from "../Deck/EditDeck";
 import EditCard from "../Cards/EditCard";
 
 function Layout() {

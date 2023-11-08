@@ -5,10 +5,12 @@ import {
   Link,
   useParams,
   useRouteMatch,
+  useHistory,
 } from "react-router-dom";
 import { readDeck } from "../utils/api";
 import DeckNav from "./DeckNav";
 import Cards from "../Cards";
+import { deleteDeck } from "../utils/api";
 
 function Deck() {
   const [currentDeck, setCurrentDeck] = useState({});
@@ -16,7 +18,7 @@ function Deck() {
   // console.log(currentDeck);
 
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const deckId = params.deckId;
 
   const { url, path } = useRouteMatch();
@@ -29,6 +31,18 @@ function Deck() {
     }
     getDeck();
   }, [deckId]);
+
+  const history = useHistory();
+  console.log(history);
+
+  const handleDelete = async (deck) => {
+    if (
+      window.confirm("Delete this deck? You will not be able to recover it.")
+    ) {
+      await deleteDeck(deckId);
+      history.push("/");
+    }
+  };
 
   if (currentDeck.id) {
     return (
@@ -47,7 +61,7 @@ function Deck() {
           <Link to={`${url}/cards/new`} className="btn btn-primary">
             <span className="oi oi-plus" /> Add Cards
           </Link>
-          <button type="button" className="btn btn-danger float-right">
+          <button type="button" className="btn btn-danger float-right" onClick={handleDelete}>
             <span className="oi oi-trash" /> Delete
           </button>
         </div>

@@ -13,9 +13,6 @@ import { readDeck, updateDeck, listDecks } from "../utils/api";
 import DeckForm from "./DeckForm";
 
 function EditDeck() {
-  // const [currentDeck, setCurrentDeck] = useState({});
-  // console.log(currentDeck);
-
   const params = useParams();
   // console.log(params);
   const deckId = params.deckId;
@@ -28,22 +25,13 @@ function EditDeck() {
     getDeck();
   }, [deckId]);
 
-  // console.log(currentDeck)
-
-  // const initialFormData = {
-  //   name: `${currentDeck.name}`,
-  //   description: `${currentDeck.description}`,
-  // };
-
   const initialFormData = {
     name: "",
     description: "",
   };
 
-  console.log(initialFormData)
-
   const [formData, setFormData] = useState(initialFormData);
-  console.log(formData)
+  // console.log(formData)
 
   function handleChange(event) {
     event.preventDefault();
@@ -53,45 +41,40 @@ function EditDeck() {
     });
   }
 
-  // const history = useHistory();
+  const history = useHistory();
 
-  // const [updatedDecksList, setUpdatedDecksList] = useState([]);
+  const [newDeckId, setNewDeckId] = useState("");
 
-  // console.log(updatedDecksList)
+  useEffect(() => {
+    async function getUpdatedDecks() {
+      const updatedDecksList = await listDecks();
+      const newDeck = updatedDecksList[updatedDecksList.length - 1];
+      setNewDeckId(newDeck.id)
+    }
+    getUpdatedDecks();
+  }, [])
 
-  // useEffect(() => {
-  //   async function getUpdatedDecks() {
-  //     const data = await listDecks();
-  //     setUpdatedDecksList(data)
-  //   }
-  //   getUpdatedDecks();
-  // }, [])
+  async function handleSubmit(event) {
+    event.preventDefault();
 
-  // const newDeck = updatedDecksList[updatedDecksList.length - 1];
-  // const newDeckId = newDeck.id;
-  // // console.log(newDeckId)
+    await updateDeck(formData);
 
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
+    history.push(`/decks/${newDeckId}`);
+  }
 
-  //   await updateDeck(formData);
-
-  //   history.push(`/decks/${newDeckId}`);
-  // }
-
-  // function handleCancel() {
-  //   history.push(`/decks/${newDeckId}`);
-  // }
+  function handleCancel() {
+    history.push(`/decks/${newDeckId}`);
+  }
 
   if (deckId) {
     return (
-      <div>
+      <div className="pb-4">
         <EditNav currentDeck={formData} deckId={deckId} />
         <h1>Edit Deck</h1>
         <DeckForm
           handleChange={handleChange}
-          // handleSubmit={handleSubmit}
-          // handleCancel={handleCancel}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
           formData={formData}
         />
       </div>

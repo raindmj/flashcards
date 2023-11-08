@@ -6,6 +6,8 @@ import { readDeck, updateDeck, listDecks } from "../utils/api";
 import DeckForm from "./DeckForm";
 
 function EditDeck() {
+  const [currentDeck, setCurrentDeck] = useState({});
+
   const params = useParams();
   // console.log(params);
   const deckId = params.deckId;
@@ -13,6 +15,7 @@ function EditDeck() {
   useEffect(() => {
     async function getDeck() {
       const data = await readDeck(deckId);
+      setCurrentDeck(data);
       setFormData(data);
     }
     getDeck();
@@ -36,31 +39,20 @@ function EditDeck() {
 
   const history = useHistory();
 
-  const [newDeckId, setNewDeckId] = useState("");
-
-  useEffect(() => {
-    async function getNewDeckId() {
-      const updatedDecksList = await listDecks();
-      const newDeck = updatedDecksList[updatedDecksList.length - 1];
-      setNewDeckId(newDeck.id);
-    }
-    getNewDeckId();
-  }, []);
-
   async function handleSubmit(event) {
     event.preventDefault();
     await updateDeck(formData);
-    history.push(`/decks/${newDeckId}`);
+    history.push(`/decks/${deckId}`);
   }
 
   function handleCancel() {
-    history.push(`/decks/${newDeckId}`);
+    history.push(`/decks/${deckId}`);
   }
 
   if (deckId) {
     return (
       <div className="pb-4">
-        <EditNav currentDeck={formData} deckId={deckId} />
+        <EditNav currentDeck={currentDeck} deckId={deckId} />
         <h1>Edit Deck</h1>
         <DeckForm
           handleChange={handleChange}

@@ -1,14 +1,7 @@
 import React from "react";
 import EditNav from "./DeckNav/EditNav";
 import { useState, useEffect } from "react";
-import {
-  Route,
-  Switch,
-  Link,
-  useParams,
-  useRouteMatch,
-  useHistory,
-} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { readDeck, updateDeck, listDecks } from "../utils/api";
 import DeckForm from "./DeckForm";
 
@@ -46,19 +39,17 @@ function EditDeck() {
   const [newDeckId, setNewDeckId] = useState("");
 
   useEffect(() => {
-    async function getUpdatedDecks() {
+    async function getNewDeckId() {
       const updatedDecksList = await listDecks();
       const newDeck = updatedDecksList[updatedDecksList.length - 1];
-      setNewDeckId(newDeck.id)
+      setNewDeckId(newDeck.id);
     }
-    getUpdatedDecks();
-  }, [])
+    getNewDeckId();
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     await updateDeck(formData);
-
     history.push(`/decks/${newDeckId}`);
   }
 

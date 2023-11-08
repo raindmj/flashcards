@@ -1,28 +1,25 @@
 import React from "react";
 import {
-  Route,
-  Switch,
-  Link,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+    Route,
+    Switch,
+    Link,
+    useParams,
+    useRouteMatch,
+  } from "react-router-dom";
 
-function StudyNav({deckId, currentDeck}) {
+function CreateNav() {
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
           <Link to="/"><span className="oi oi-home" /> Home</Link>
         </li>
-        <li className="breadcrumb-item">
-          <Link to={`/decks/${deckId}`}>{currentDeck.name}</Link>
-        </li>
         <li className="breadcrumb-item active" aria-current="page">
-          Study
+          Create Deck
         </li>
       </ol>
     </nav>
   );
 }
 
-export default StudyNav;
+export default CreateNav;

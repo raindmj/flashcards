@@ -1,7 +1,5 @@
 import React from "react";
 import DecksList from "./DecksList";
-import { useState, useEffect } from "react";
-import { listDecks } from "../utils/api";
 import { Link } from "react-router-dom";
 
 function Home() {

@@ -8,7 +8,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import { readDeck } from "../utils/api";
-import DeckNav from "./DeckNav";
+import DeckNav from "./DeckNav/index";
 import Cards from "../Cards";
 import { deleteDeck } from "../utils/api";
 

@@ -12,7 +12,7 @@ function DeckNav({currentDeck}) {
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
-          <Link to="/">Home</Link>
+          <Link to="/"><span className="oi oi-home" /> Home</Link>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           {currentDeck.name}

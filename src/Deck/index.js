@@ -33,7 +33,7 @@ function Deck() {
   }, [deckId]);
 
   const history = useHistory();
-  console.log(history);
+  // console.log(history);
 
   const handleDelete = async (deck) => {
     if (
@@ -66,7 +66,7 @@ function Deck() {
           </button>
         </div>
 
-        <Cards currentDeck={currentDeck} />
+        <Cards currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} />
       </div>
     );
   } else {

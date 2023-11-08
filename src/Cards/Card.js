@@ -1,11 +1,8 @@
 import React from "react";
-import { Link, useParams, useRouteMatch } from "react-router-dom";
+import { Link, useParams, useRouteMatch, useHistory } from "react-router-dom";
 
-function Card({ card }) {
-  console.log(card)
-
-  const params = useParams();
-  // console.log(params);
+function Card({ card, handleDelete }) {
+  // console.log(card)
 
   const {url, path} = useRouteMatch();
   // console.log(url, path)
@@ -21,7 +18,7 @@ function Card({ card }) {
           <Link to={`${url}/cards/${card.id}/edit`} className="btn btn-secondary mr-2">
             <span className="oi oi-pencil" /> Edit
           </Link>
-          <button type="button" className="btn btn-danger">
+          <button type="button" className="btn btn-danger" onClick={() => handleDelete(card)}>
             <span className="oi oi-trash" /> Delete
           </button>
         </div>

@@ -37,6 +37,10 @@ function CreateDeck() {
     history.push(`/decks/${newDeckId}`);
   }
 
+  function handleCancel() {
+    history.push("/")
+  }
+
   return (
     <div className="pb-4">
       <CreateNav />
@@ -44,6 +48,7 @@ function CreateDeck() {
       <DeckForm
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
         formData={formData}
       />
     </div>

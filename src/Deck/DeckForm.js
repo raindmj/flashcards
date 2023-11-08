@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function DeckForm({ handleSubmit, handleChange, formData }) {
+function DeckForm({ handleSubmit, handleChange, handleCancel, formData }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -28,9 +28,13 @@ function DeckForm({ handleSubmit, handleChange, formData }) {
           className="form-control"
         />
       </div>
-      <Link to="/" className="btn btn-secondary mr-2">
+      <button
+        type="button"
+        onClick={handleCancel}
+        className="btn btn-secondary mr-2"
+      >
         Cancel
-      </Link>
+      </button>
       <input type="submit" className="btn btn-primary" />
     </form>
   );

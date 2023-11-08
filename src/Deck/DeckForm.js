@@ -35,7 +35,7 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, formData }) {
       >
         Cancel
       </button>
-      <input type="submit" className="btn btn-primary" />
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );
 }

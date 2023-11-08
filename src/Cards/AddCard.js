@@ -50,22 +50,26 @@ function AddCard() {
   const submitLabel = "Save";
   const cancelLabel = "Done";
 
-  console.log(formData)
+  // console.log(formData);
 
-  return (
-    <div className="pb-4">
-      <AddCardNav currentDeck={currentDeck} />
-      <h2>Add Card</h2>
-      <CardForm
-        submitLabel={submitLabel}
-        cancelLabel={cancelLabel}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-        formData={formData}
-      />
-    </div>
-  );
+  if (currentDeck.id) {
+    return (
+      <div className="pb-4">
+        <AddCardNav currentDeck={currentDeck} deckId={deckId} />
+        <h2>Add Card</h2>
+        <CardForm
+          submitLabel={submitLabel}
+          cancelLabel={cancelLabel}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          formData={formData}
+        />
+      </div>
+    );
+  } else {
+    return "Loading...";
+  }
 }
 
 export default AddCard;

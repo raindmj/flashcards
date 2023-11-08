@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { readCard, readDeck, updateCard } from "../utils/api";
 import { useHistory, useParams } from "react-router-dom";
 import EditCardNav from "./CardsNav/EditCardNav";
@@ -15,7 +15,7 @@ function EditCard() {
   const [formData, setFormData] = useState(initialFormData);
 
   const { deckId, cardId } = useParams();
-    // console.log(deckId, cardId)
+  // console.log(deckId, cardId)
 
   useEffect(() => {
     async function getCard() {
@@ -52,20 +52,28 @@ function EditCard() {
 
   // console.log(formData);
 
-  return (
-    <div className="pb-4">
-      <EditCardNav currentDeck={currentDeck} cardId={cardId} deckId={deckId} />
-      <h2>Edit Card</h2>
-      <CardForm
-        submitLabel={submitLabel}
-        cancelLabel={cancelLabel}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-        formData={formData}
-      />
-    </div>
-  );
+  if (currentDeck.id) {
+    return (
+      <div className="pb-4">
+        <EditCardNav
+          currentDeck={currentDeck}
+          cardId={cardId}
+          deckId={deckId}
+        />
+        <h2>Edit Card</h2>
+        <CardForm
+          submitLabel={submitLabel}
+          cancelLabel={cancelLabel}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          formData={formData}
+        />
+      </div>
+    );
+  } else {
+    return "Loading...";
+  }
 }
 
 export default EditCard;

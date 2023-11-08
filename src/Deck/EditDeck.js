@@ -49,7 +49,7 @@ function EditDeck() {
     history.push(`/decks/${deckId}`);
   }
 
-  if (deckId) {
+  if (currentDeck.id) {
     return (
       <div className="pb-4">
         <EditNav currentDeck={currentDeck} deckId={deckId} />
@@ -62,6 +62,8 @@ function EditDeck() {
         />
       </div>
     );
+  } else {
+    return "Loading...";
   }
 }
 

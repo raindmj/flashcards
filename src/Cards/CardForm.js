@@ -1,30 +1,30 @@
 import React from "react";
 
-function DeckForm({ handleSubmit, handleChange, handleCancel, formData }) {
+function DeckForm({ handleSubmit, handleChange, handleCancel, handleSave, formData, cancelLabel, submitLabel }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          name="name"
+        <label htmlFor="front">Front:</label>
+        <textarea
+          id="front"
+          name="front"
           type="text"
           onChange={handleChange}
-          placeholder="Deck Name"
-          value={formData.name}
+          placeholder="Front side of card"
+          value={formData.front}
           className="form-control"
           required
         />
       </div>
       <div className="form-group">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="back">Back:</label>
         <textarea
-          id="description"
-          name="description"
+          id="back"
+          name="back"
           type="text"
           onChange={handleChange}
-          placeholder="Brief description of the deck"
-          value={formData.description}
+          placeholder="Back side of card"
+          value={formData.back}
           className="form-control"
           required
         />
@@ -34,9 +34,9 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, formData }) {
         onClick={handleCancel}
         className="btn btn-secondary mr-2"
       >
-        Cancel
+        {cancelLabel}
       </button>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="submit" onClick={handleSave} className="btn btn-primary">{submitLabel}</button>
     </form>
   );
 }

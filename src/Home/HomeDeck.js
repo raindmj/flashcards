@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteDeck } from "../utils/api";
 
 function HomeDeck({ deck, handleDelete }) {
   // console.log("deck:", deck);

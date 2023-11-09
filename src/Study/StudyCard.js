@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Route, Switch, Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function StudyCard({ currentDeck }) {
   // console.log(currentDeck)
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [index, setIndex] = useState(0);
 
+  // declare state variable to control card flip
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // declare state variable to access index of cards array
+  const [index, setIndex] = useState(0);
   // console.log(index);
 
   const cards = currentDeck.cards;
@@ -14,28 +17,40 @@ function StudyCard({ currentDeck }) {
   const history = useHistory();
 
   function handleBack() {
-    if (index > 0) {
-      setIndex(index - 1);
+    //on click, set the index to be the current index - 1
+    setIndex(index - 1);
+
+    //and if the card is flipped to the back (isFlipped === true), flips the card back to the front (set isFlipped === false)
+    if (isFlipped === true) {
+      setIsFlipped(false);
     }
   }
 
+  //when flip is clicked, set the state of isFlipped to be the opposite of current state
   function handleFlip() {
     setIsFlipped(!isFlipped);
   }
 
   function handleNext() {
-    if (index < cards.length) {
-      setIndex(index + 1);
-    }
+    //on click, set the index to be current index + 1
+    setIndex(index + 1);
+
+    //and if the card is flipped to the back (isFlipped === true), flips the card back to the front (set isFlipped === false)
     if (isFlipped === true) {
       setIsFlipped(false);
     }
   }
 
   function handleRestart() {
-    if (window.confirm("Restart cards? Click 'cancel' to return to the home page.")) {
+    if (
+      window.confirm(
+        "Restart cards? Click 'cancel' to return to the home page."
+      )
+    ) {
+      //if the user clicks okay, set the index back to 0
       setIndex(0);
     } else {
+      //if they cancel, redirect them to home page
       history.push("/");
     }
   }
@@ -66,7 +81,7 @@ function StudyCard({ currentDeck }) {
           >
             {isFlipped ? "Flip to Front" : "Flip to Back"}
           </button>
-          {(index + 1 < cards.length && isFlipped === true) && (
+          {index + 1 < cards.length && isFlipped === true && (
             <button
               type="button"
               className="btn btn-primary"
@@ -75,7 +90,7 @@ function StudyCard({ currentDeck }) {
               Next
             </button>
           )}
-          {index === (cards.length - 1) && (
+          {index === cards.length - 1 && (
             <button
               type="button"
               className="btn btn-success"

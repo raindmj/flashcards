@@ -1,21 +1,24 @@
 import React from "react";
 import Card from "./Card";
-import { Link, useParams, useRouteMatch, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { deleteCard, readDeck } from "../utils/api";
 
 function CardsList({ currentDeck, setCurrentDeck }) {
   // console.log(currentDeck);
 
-  const params = useParams();
-  // console.log(params);
-  const deckId = params.deckId;
+  const {deckId} = useParams();
+  // console.log(deckId);
 
   const handleDelete = async (card) => {
+    //if user clicks okay,
     if (
       window.confirm("Delete this card? You will not be able to recover it.")
     ) {
+      //delete card with matching card id
       await deleteCard(card.id);
+      //get the current deck with matching deck id
       const updatedDeck = await readDeck(deckId);
+      //set the current deck to be the updatedDeck
       setCurrentDeck(updatedDeck);
     }
   };

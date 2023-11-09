@@ -25,20 +25,22 @@ function CreateDeck() {
   const history = useHistory();
 
   async function handleSubmit(event) {
+    //on submit, prevent page from reloading
     event.preventDefault();
-
+    //make call to API with POST method to create a new deck with the form data
     await createDeck(formData);
-
+    //fetch updated array of decks
     const updatedDecksList = await listDecks();
+    //new deck added is the last in the array
     const newDeck = updatedDecksList[updatedDecksList.length - 1];
     const newDeckId = newDeck.id;
     // console.log(newDeckId)
-
+    //redirect user to the deck page that matches the id of the new deck
     history.push(`/decks/${newDeckId}`);
   }
 
   function handleCancel() {
-    history.push("/")
+    history.push("/");
   }
 
   return (

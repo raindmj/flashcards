@@ -1,6 +1,14 @@
 import React from "react";
 
-function DeckForm({ handleSubmit, handleChange, handleCancel, handleSave, formData, cancelLabel, submitLabel }) {
+function DeckForm({
+  handleSubmit,
+  handleChange,
+  handleCancel,
+  handleSave,
+  formData,
+  cancelLabel,
+  submitLabel,
+}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -38,7 +46,9 @@ function DeckForm({ handleSubmit, handleChange, handleCancel, handleSave, formDa
       >
         {cancelLabel}
       </button>
-      <button type="submit" onClick={handleSave} className="btn btn-primary">{submitLabel}</button>
+      <button type="submit" onClick={handleSave} className="btn btn-primary">
+        {submitLabel}
+      </button>
     </form>
   );
 }

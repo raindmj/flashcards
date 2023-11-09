@@ -2,7 +2,7 @@ import React from "react";
 import EditNav from "./DeckNav/EditNav";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { readDeck, updateDeck, listDecks } from "../utils/api";
+import { readDeck, updateDeck } from "../utils/api";
 import DeckForm from "./DeckForm";
 
 function EditDeck() {

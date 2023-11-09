@@ -2,7 +2,7 @@ import React from "react";
 import CardsList from "./CardsList";
 
 function Cards({ currentDeck, setCurrentDeck }) {
-    // console.log(currentDeck)
+  // console.log(currentDeck)
   return (
     <div>
       <h2>Cards</h2>

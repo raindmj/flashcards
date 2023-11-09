@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Route,
-  Switch,
-  Link,
-  useParams,
-  useRouteMatch,
-  useHistory,
-} from "react-router-dom";
+import { Link, useParams, useRouteMatch, useHistory } from "react-router-dom";
 import { readDeck } from "../utils/api";
 import DeckNav from "./DeckNav/index";
 import Cards from "../Cards";
@@ -14,14 +7,13 @@ import { deleteDeck } from "../utils/api";
 
 function Deck() {
   const [currentDeck, setCurrentDeck] = useState({});
-
   // console.log(currentDeck);
 
   const params = useParams();
   // console.log(params);
   const deckId = params.deckId;
 
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
   // console.log(url, path)
 
   useEffect(() => {
@@ -35,14 +27,17 @@ function Deck() {
   const history = useHistory();
   // console.log(history);
 
-  const handleDelete = async (deck) => {
+  async function handleDelete() {
+    //if user clicks okay,
     if (
       window.confirm("Delete this deck? You will not be able to recover it.")
     ) {
+      //make API call with DELETE method to delete the deck with matching deck id
       await deleteDeck(deckId);
+      //after deleting, redirect to home page
       history.push("/");
     }
-  };
+  }
 
   if (currentDeck.id) {
     return (
@@ -61,7 +56,11 @@ function Deck() {
           <Link to={`${url}/cards/new`} className="btn btn-primary">
             <span className="oi oi-plus" /> Add Cards
           </Link>
-          <button type="button" className="btn btn-danger float-right" onClick={handleDelete}>
+          <button
+            type="button"
+            className="btn btn-danger float-right"
+            onClick={handleDelete}
+          >
             <span className="oi oi-trash" /> Delete
           </button>
         </div>

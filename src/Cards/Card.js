@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, useParams, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 function Card({ card, handleDelete }) {
   // console.log(card)
 
-  const {url, path} = useRouteMatch();
+  const { url } = useRouteMatch();
   // console.log(url, path)
 
   return (
@@ -15,10 +15,17 @@ function Card({ card, handleDelete }) {
           <p className="card-text col">{card.back}</p>
         </div>
         <div className="float-right">
-          <Link to={`${url}/cards/${card.id}/edit`} className="btn btn-secondary mr-2">
+          <Link
+            to={`${url}/cards/${card.id}/edit`}
+            className="btn btn-secondary mr-2"
+          >
             <span className="oi oi-pencil" /> Edit
           </Link>
-          <button type="button" className="btn btn-danger" onClick={() => handleDelete(card)}>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => handleDelete(card)}
+          >
             <span className="oi oi-trash" /> Delete
           </button>
         </div>

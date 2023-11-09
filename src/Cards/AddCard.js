@@ -19,29 +19,35 @@ function AddCard() {
 
   useEffect(() => {
     async function getDeck() {
+      //fetch current deck with matching deck id
       const data = await readDeck(deckId);
+      //set the current deck to be the retrieved data (need this for the nav bar)
       setCurrentDeck(data);
     }
     getDeck();
   }, []);
 
   function handleChange(event) {
+    //prevent page from reloading when input changes
     event.preventDefault();
     setFormData({
+      //spread operator to get the previous form data
       ...formData,
+      //update existing data (objects have unique key names, can't be duplicated)
       [event.target.name]: event.target.value,
     });
   }
 
-  const history = useHistory();
-
   async function handleSubmit(event) {
+    //after clicking submit, prevent page from reloading
     event.preventDefault();
-
+    //call on API with POST request and deckId + new card obj from form data to create new card
     await createCard(deckId, formData);
-
+    //clear the form data after creating the card and submitting
     setFormData(initialFormData);
   }
+
+  const history = useHistory();
 
   function handleCancel() {
     history.push(`/decks/${deckId}`);

@@ -1,6 +1,6 @@
 import React from "react";
 
-function DeckForm({
+function CardForm({
   handleSubmit,
   handleChange,
   handleCancel,
@@ -53,4 +53,4 @@ function DeckForm({
   );
 }
 
-export default DeckForm;
+export default CardForm;
